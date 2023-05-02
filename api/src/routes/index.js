@@ -84,12 +84,12 @@ router.get('/dogs/:idRaza', async (req, res) => {
 
 router.post('/dogs', async (req, res) => {
   try {
-    const { name, height, weight, years } = req.body
-    const activity = await postActivity({ name, height, weight, years, countryId })
-    if (!activity) {
-      throw new Error(`CountryId ${countryId} not valid`)
+    const { name, height, weight, years, dogId } = req.body
+    const dog = await postDog({ name, height, weight, years, dogId })
+    if (!dog) {
+      throw new Error(`DogId ${dogId} not valid`)
     } else {
-      res.status(201).json(activity)
+      res.status(201).json(dog)
     }
   } catch (error) {
     console.error(error)
